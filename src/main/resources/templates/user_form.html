@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new user</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div >
+  <h1 class="container-fluid text-center m-5" >
+    [[${pagetitle}]]
+  </h1>
+    <form class="border-dark-2 rounded-5" th:action="@{/user/save}" method="post" th:object="${user}"
+        style="max-width: 500px; margin: 0 auto; " >
+        <input type="hidden" th:field="*{id}">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                required maxlength="45" minlength="15">
+            <div id="emailHelp" class="form-text small">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">First name</label>
+            <input type="text" th:field="*{firstname}" class="form-control"  aria-describedby="emailHelp"
+                required minlength="4" maxlength="45">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">last name</label>
+            <input type="text" th:field="*{lastname}" class="form-control"  aria-describedby="emailHelp"
+                required minlength="4" maxlength="45">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1"
+                required minlength="5" maxlength="45">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" th:field="*{enable}" id="exampleCheck1" required>
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary m-2">Submit</button>
+        <button type="submit" class="btn btn-secondary m-2" onclick="cancelform()">cancel</button>
+    </form>
+</div>
+<script>
+    function cancelform(){
+        window.location="[[@{/users}]]"
+    }
+</script>
+</body>
+</html>
